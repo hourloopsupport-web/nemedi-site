@@ -1,20 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg-dark: #0b0e14;
-  --bg-surface: #121824;
-  --bg-card: rgba(22, 30, 46, 0.75);
-  --bg-card-hover: rgba(30, 41, 62, 0.85);
-  --accent-gold: #e2b042;
-  --accent-gold-glow: rgba(226, 176, 66, 0.35);
-  --accent-brass: #c88937;
-  --accent-blue: #2a75d3;
-  --accent-cyan: #38bdf8;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-dark: #64748b;
-  --border-color: rgba(226, 176, 66, 0.2);
-  --border-hover: rgba(226, 176, 66, 0.5);
+  /* Палитра студии NeMedi: логотип построен на чистом красном #ff0000 и
+     чёрном, поэтому сайт держит ту же пару, а не прежнее золото.
+     Для крупных плоскостей и текста красный чуть смягчён — чистый #ff0000
+     на тёмном фоне «звенит» и утомляет; он остаётся только в самом логотипе
+     и в тонких акцентах. */
+  --bg-dark: #0b0b0e;
+  --bg-surface: #14141a;
+  --bg-card: rgba(26, 26, 33, 0.75);
+  --bg-card-hover: rgba(36, 36, 45, 0.85);
+  --accent-gold: #ff2b3a;
+  --accent-gold-glow: rgba(255, 43, 58, 0.32);
+  --accent-brass: #b3131f;
+  --accent-blue: #7a1520;
+  --accent-cyan: #ff6b76;
+  --text-main: #f4f4f6;
+  --text-muted: #a1a1ac;
+  --text-dark: #6b6b76;
+  --border-color: rgba(255, 43, 58, 0.2);
+  --border-hover: rgba(255, 43, 58, 0.5);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -40,9 +45,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(226, 176, 66, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
-    linear-gradient(to bottom, #090c10, #0d121c);
+    radial-gradient(circle at 15% 12%, rgba(255, 43, 58, 0.10) 0%, transparent 42%),
+    radial-gradient(circle at 85% 88%, rgba(255, 43, 58, 0.05) 0%, transparent 42%),
+    linear-gradient(to bottom, #08080b, #101016);
 }
 
 .container {
@@ -59,7 +64,7 @@ header {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   background: rgba(11, 14, 20, 0.9);
-  border-bottom: 1px solid rgba(226, 176, 66, 0.15);
+  border-bottom: 1px solid rgba(255, 43, 58, 0.15);
 }
 
 .nav-wrap {
@@ -79,13 +84,14 @@ header {
   flex-shrink: 0;
 }
 
-.brand-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--accent-gold);
-  box-shadow: 0 0 10px var(--accent-gold-glow);
-  object-fit: cover;
+/* Монограмма логотипа. Рамки и скругления НЕТ намеренно: у знака прозрачный
+   фон и собственный силуэт, коробка вокруг него превратила бы фирменный знак
+   в «иконку приложения». */
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px var(--accent-gold-glow));
 }
 
 .brand-name {
@@ -150,8 +156,8 @@ header {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(226, 176, 66, 0.12);
-  border: 1px solid rgba(226, 176, 66, 0.3);
+  background: rgba(255, 43, 58, 0.12);
+  border: 1px solid rgba(255, 43, 58, 0.3);
   color: var(--accent-gold);
   font-size: clamp(0.75rem, 2.5vw, 0.85rem);
   font-weight: 600;
@@ -166,7 +172,7 @@ header {
   line-height: 1.15;
   font-weight: 800;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ffffff 20%, #f3d182 60%, var(--accent-gold) 100%);
+  background: linear-gradient(135deg, #ffffff 20%, #ff9aa2 60%, var(--accent-gold) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -210,7 +216,7 @@ header {
 
 .btn-primary:hover, .btn-primary:active {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(226, 176, 66, 0.55);
+  box-shadow: 0 6px 24px rgba(255, 43, 58, 0.55);
 }
 
 .btn-secondary {
@@ -227,23 +233,65 @@ header {
   transform: translateY(-2px);
 }
 
-.store-badge-link {
-  display: inline-block;
-  transition: transform var(--transition), filter var(--transition);
-  border-radius: var(--radius-md);
+/* Кнопки магазинов.
+
+   Готовые официальные плашки использовать не получилось: у них РАЗНЫЕ
+   пропорции — RuStore 1110×400 (2.77), AppGallery 851×256 (3.32). При равной
+   высоте они дают разную ширину, при равной ширине — разную высоту, и
+   «одинакового размера» из них не выходит, не растягивая брендовую графику.
+   Поэтому кнопка своя, а иконка внутри — официальная, вырезанная из плашки
+   без изменений.
+
+   Размер задан жёстко (min-width + фиксированная высота), чтобы обе кнопки
+   были одинаковыми независимо от длины названия магазина. */
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 260px;
+  height: 68px;
+  padding: 0 22px;
+  box-sizing: border-box;
   text-decoration: none;
+  color: var(--text-main);
+  background: linear-gradient(145deg, rgba(30, 30, 38, 0.95), rgba(16, 16, 21, 0.95));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
 }
 
-.store-badge-link:hover, .store-badge-link:active {
+.store-btn:hover, .store-btn:active {
   transform: translateY(-3px);
-  filter: brightness(1.1) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 18px var(--accent-gold-glow);
 }
 
-.store-badge-img {
-  height: 52px;
-  width: auto;
-  display: block;
-  border-radius: 12px;
+/* Иконка магазина — брендовая, поэтому только масштабируется. Скругление у
+   обеих исходных иконок уже своё, добавлять своё поверх нельзя. */
+.store-btn-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.store-btn-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;
+}
+
+.store-btn-top {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.store-btn-name {
+  font-size: 1.28rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .hero-visual {
@@ -258,8 +306,8 @@ header {
   border-radius: 24px;
   padding: 8px;
   background: linear-gradient(145deg, #1e293b, #0f172a);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(226, 176, 66, 0.15);
-  border: 2px solid rgba(226, 176, 66, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 43, 58, 0.15);
+  border: 2px solid rgba(255, 43, 58, 0.3);
 }
 
 .phone-mockup img {
@@ -318,8 +366,8 @@ header {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background: rgba(226, 176, 66, 0.12);
-  border: 1px solid rgba(226, 176, 66, 0.25);
+  background: rgba(255, 43, 58, 0.12);
+  border: 1px solid rgba(255, 43, 58, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,6 +438,18 @@ header {
   align-items: center;
 }
 
+/* Полный логотип студии. Знак вертикальный (336×410), поэтому в шапке он
+   стоял бы крошечным — там монограмма, а целиком логотип показан здесь и в
+   подвале, где место есть. */
+.about-logo {
+  /* 132, а не 96: внутри логотипа есть строка «STUDIO» разрядкой, и на
+     меньшем размере она превращается в неразборчивую полосу. */
+  height: 132px;
+  width: auto;
+  display: block;
+  margin-bottom: 18px;
+}
+
 .about-title {
   font-family: 'Cinzel', serif;
   font-size: clamp(1.5rem, 5vw, 2rem);
@@ -404,7 +464,7 @@ header {
 
 .contact-box {
   background: rgba(11, 14, 20, 0.7);
-  border: 1px solid rgba(226, 176, 66, 0.2);
+  border: 1px solid rgba(255, 43, 58, 0.2);
   border-radius: var(--radius-md);
   padding: 20px;
 }
@@ -435,7 +495,7 @@ header {
 /* Footer */
 footer {
   padding: 32px 0;
-  border-top: 1px solid rgba(226, 176, 66, 0.1);
+  border-top: 1px solid rgba(255, 43, 58, 0.12);
   background: #07090e;
   font-size: 0.85rem;
   color: var(--text-dark);
@@ -447,6 +507,21 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* В подвале — МОНОГРАММА, а не полный логотип: на такой высоте подпись
+   «NeMedi STUDIO» внутри знака нечитаема, а рядом и так стоит копирайт
+   с названием студии. */
+.footer-logo {
+  height: 40px;
+  width: auto;
+  opacity: 0.9;
 }
 
 .footer-links {
@@ -479,7 +554,7 @@ footer {
 .legal-header {
   margin-bottom: 28px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(226, 176, 66, 0.15);
+  border-bottom: 1px solid rgba(255, 43, 58, 0.15);
 }
 
 .legal-header h1 {
@@ -522,7 +597,7 @@ footer {
 }
 
 .lang-btn:hover, .lang-btn.active {
-  background: rgba(226, 176, 66, 0.15);
+  background: rgba(255, 43, 58, 0.15);
   border-color: var(--accent-gold);
   color: var(--accent-gold);
 }
@@ -582,7 +657,7 @@ footer {
 }
 
 .legal-body th {
-  background: rgba(226, 176, 66, 0.12);
+  background: rgba(255, 43, 58, 0.12);
   color: var(--accent-gold);
   font-weight: 600;
 }
@@ -689,6 +764,19 @@ footer {
     flex-direction: column;
     text-align: center;
     gap: 14px;
+  }
+
+  .footer-brand {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Кнопки магазинов на телефоне — во всю ширину колонки и по-прежнему
+     одинаковые между собой. */
+  .store-btn {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
   }
 
   .footer-links {
