@@ -36,6 +36,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 68px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -44,7 +45,9 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   min-height: 100vh;
-  overflow-x: hidden;
+  padding-top: 68px;
+  overflow-x: clip;
+  width: 100%;
   background-image: 
     radial-gradient(circle at 15% 12%, rgba(255, 43, 58, 0.10) 0%, transparent 42%),
     radial-gradient(circle at 85% 88%, rgba(255, 43, 58, 0.05) 0%, transparent 42%),
@@ -54,18 +57,21 @@ body {
 .container {
   width: 100%;
   max-width: 1140px;
+  min-width: 0;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 /* Header & Nav */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(11, 14, 20, 0.9);
+  background: rgba(11, 14, 20, 0.92);
   border-bottom: 1px solid rgba(255, 43, 58, 0.15);
 }
 
@@ -147,6 +153,10 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: clamp(32px, 5vh, 60px) 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -332,6 +342,10 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: clamp(32px, 5vh, 60px) 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -408,6 +422,10 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: clamp(32px, 5vh, 60px) 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
   background: rgba(0, 0, 0, 0.25);
 }
 
@@ -446,6 +464,10 @@ header {
   flex-direction: column;
   justify-content: center;
   padding: clamp(32px, 5vh, 60px) 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -720,46 +742,128 @@ footer {
    ========================================================================== */
 
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: clip;
+  }
+
   html {
-    scroll-padding-top: 84px;
+    scroll-padding-top: 92px;
+  }
+
+  body {
+    padding-top: 92px;
+  }
+
+  header .container {
+    padding: 0 10px;
   }
 
   .hero,
   .features,
   .gallery,
   .about {
-    min-height: calc(100dvh - 84px);
-    padding: clamp(28px, 4vh, 48px) 0;
+    min-height: auto;
+    padding: 36px 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .hero {
+    padding: 20px 0 36px;
   }
 
   .nav-wrap {
     flex-direction: column;
     height: auto;
-    padding: 12px 0;
+    padding: 10px 0 8px;
     gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .nav-links {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: flex;
     justify-content: flex-start;
-    gap: 16px;
-    padding-bottom: 4px;
+    gap: 6px;
+    padding: 2px 2px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links li {
+    flex-shrink: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: rgba(255, 43, 58, 0.08);
+    border: 1px solid rgba(255, 43, 58, 0.22);
+    color: var(--text-main);
+    display: inline-block;
+    white-space: nowrap;
+    transition: var(--transition);
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active {
+    background: rgba(255, 43, 58, 0.24);
+    border-color: var(--accent-gold);
+    color: #fff;
   }
 
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .hero-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-title {
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
   }
 
   .cta-group {
     width: 100%;
+    max-width: 100%;
     flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
   }
 
   .cta-group .btn {
@@ -767,7 +871,8 @@ footer {
   }
 
   .phone-mockup {
-    max-width: 240px;
+    max-width: 220px;
+    margin: 0 auto;
   }
 
   /* Gallery becomes a horizontal swipeable carousel on mobile */
@@ -778,6 +883,9 @@ footer {
     -webkit-overflow-scrolling: touch;
     gap: 14px;
     padding: 10px 4px 20px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .gallery-item {
@@ -788,6 +896,9 @@ footer {
   .about-card {
     grid-template-columns: 1fr;
     text-align: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .contact-box {
@@ -805,12 +916,17 @@ footer {
     gap: 10px;
   }
 
-  /* Кнопки магазинов на телефоне — во всю ширину колонки и по-прежнему
-     одинаковые между собой. */
+  /* Кнопки магазинов на телефоне — аккуратные и одинаковые */
   .store-btn {
     width: 100%;
     min-width: 0;
+    height: 58px;
+    padding: 0 18px;
     justify-content: center;
+  }
+
+  .store-btn-name {
+    font-size: 1.15rem;
   }
 
   .footer-links {
