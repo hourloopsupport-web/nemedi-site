@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Скачать Hourloop — пиксельный рогалик-автобой</title>
+<meta name="description" content="Hourloop — бесплатный пиксельный рогалик с автобоями на трёх линиях. Скачайте в RuStore или AppGallery.">
+<link rel="canonical" href="https://nemedistudio.online/download/">
+<link rel="icon" type="image/png" href="../assets/app_icon.png">
+<meta name="theme-color" content="#0b0b0e">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nemedistudio.online/download/">
+<meta property="og:title" content="Hourloop — скачать бесплатно">
+<meta property="og:description" content="Пиксельный рогалик с автобоями на трёх линиях. Управляй часами по имени Тиктак.">
+<meta property="og:image" content="https://nemedistudio.online/download/img/hero.jpg">
+
+<style>
+/* Страница отдельная от витрины: свой инлайновый CSS без style.css (20 КБ)
+   и без Google Fonts — под рекламный трафик важнее скорость первого экрана,
+   чем совпадение шрифтов с главной. Палитра взята из style.css один в один. */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0b0e; --surface:rgba(26,26,33,.72); --surface-hi:rgba(38,38,48,.9);
+  --accent:#ff2b3a; --accent-soft:rgba(255,43,58,.16);
+  --text:#f4f4f6; --muted:#a1a1ac; --dim:#6b6b76;
+  --line:rgba(255,43,58,.2); --line-hi:rgba(255,43,58,.55);
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.55;
+  min-height:100vh; display:flex; flex-direction:column;
+  background-image:
+    radial-gradient(circle at 18% 8%,rgba(255,43,58,.12) 0%,transparent 45%),
+    radial-gradient(circle at 82% 92%,rgba(255,43,58,.06) 0%,transparent 45%),
+    linear-gradient(to bottom,#08080b,#101016);
+}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:28px 20px 40px;flex:1}
+
+/* Шапка карточки приложения */
+.app{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.app>img{width:72px;height:72px;border-radius:18px;flex:none;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.app h1{font-size:1.75rem;line-height:1.15;letter-spacing:-.02em;font-weight:800}
+.app p{color:var(--muted);font-size:.95rem;margin-top:2px}
+.meta{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+     border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+
+.cols{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
+
+/* Кнопки магазинов */
+.stores{display:flex;flex-direction:column;gap:12px}
+.store{
+  display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text);
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:14px 18px;transition:border-color .2s,background .2s,transform .1s;
+}
+.store:hover{background:var(--surface-hi);border-color:var(--line-hi)}
+.store:active{transform:scale(.985)}
+.store>img{width:40px;height:40px;flex:none}
+.store .top{display:block;font-size:.76rem;color:var(--muted);letter-spacing:.03em}
+.store .name{display:block;font-size:1.22rem;font-weight:700;line-height:1.2}
+.store .go{margin-left:auto;color:var(--dim);font-size:1.3rem;line-height:1}
+
+/* Магазин, угаданный по устройству, — крупнее и с акцентом.
+   Вторая кнопка НИКОГДА не прячется: определение по User-Agent ошибается,
+   и спрятанная кнопка превращает ошибку в потерянную установку. */
+.store.primary{
+  background:linear-gradient(135deg,rgba(255,43,58,.18),rgba(255,43,58,.06));
+  border-color:var(--line-hi);padding:18px;
+  box-shadow:0 8px 28px rgba(255,43,58,.14)
+}
+.store.primary .name{font-size:1.4rem}
+.badge{
+  display:none;margin-left:auto;font-size:.68rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:3px 9px;white-space:nowrap
+}
+.store.primary .badge{display:block}
+.store.primary .go{display:none}
+
+.note{font-size:.85rem;color:var(--muted);margin-top:10px}
+.note.warn{color:#ffb0b6}
+#ios-note{display:none}
+
+/* QR для десктопа */
+#qr-box{display:none;margin-top:16px;background:var(--surface);border:1px solid var(--line);
+        border-radius:16px;padding:16px;gap:16px;align-items:center}
+#qr-box svg{width:132px;height:132px;flex:none;border-radius:8px}
+#qr-box .qr-text b{display:block;font-size:1rem;margin-bottom:4px}
+#qr-box .qr-text span{font-size:.86rem;color:var(--muted)}
+
+/* Скриншот */
+.shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);
+      max-width:270px;margin:0 auto;display:block}
+.shot img{display:block;width:100%;height:auto}
+
+.feats{list-style:none;margin-top:20px;display:grid;gap:8px}
+.feats li{font-size:.92rem;color:var(--muted);padding-left:22px;position:relative}
+.feats li::before{content:"\25C6";position:absolute;left:0;color:var(--accent);font-size:.7rem;top:.35em}
+
+footer{border-top:1px solid rgba(255,255,255,.06);padding:18px 20px 26px;
+       font-size:.8rem;color:var(--dim);text-align:center}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15)}
+footer a:hover{color:var(--text)}
+footer .row{margin-top:6px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+@media(min-width:760px){
+  .wrap{padding-top:48px}
+  .cols{grid-template-columns:1fr 300px;gap:40px}
+  .app h1{font-size:2.1rem}
+  .shot{max-width:300px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="app">
+    <img src="img/icon.webp" width="144" height="144" alt="Иконка Hourloop">
+    <div>
+      <h1>Hourloop</h1>
+      <p>Пиксельный рогалик с автобоями на трёх линиях</p>
+      <div class="meta">
+        <span class="tag">Бесплатно</span>
+        <span class="tag">Android</span>
+        <span class="tag">12+</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="stores" id="stores">
+
+        <a class="store" id="s-rustore" data-goal="rustore_click"
+           href="https://www.rustore.ru/catalog/app/com.NeMedi.hourloop"
+           target="_blank" rel="noopener">
+          <img src="img/rustore.webp" width="96" height="96" alt="">
+          <span>
+            <span class="top">Скачать в</span>
+            <span class="name">RuStore</span>
+          </span>
+          <span class="badge">Ваш магазин</span>
+          <span class="go">&rarr;</span>
+        </a>
+
+        <a class="store" id="s-appgallery" data-goal="appgallery_click"
+           href="https://url.cloud.huawei.com/BLCYEuFCV2?shareTo=qrcode"
+           target="_blank" rel="noopener">
+          <img src="img/appgallery.webp" width="96" height="96" alt="">
+          <span>
+            <span class="top">Открыть в</span>
+            <span class="name">AppGallery</span>
+          </span>
+          <span class="badge">Ваш магазин</span>
+          <span class="go">&rarr;</span>
+        </a>
+
+      </div>
+
+      <p class="note warn" id="ios-note">Версии для iPhone пока нет — игра выходит только на Android.</p>
+
+      <div id="qr-box">
+        <svg viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="QR-код на страницу загрузки Hourloop"><rect width="37" height="37" fill="#fff"/><path fill="#111" d="M2 2h7v1h-7zM14 2h1v1h-1zM18 2h1v1h-1zM20 2h4v1h-4zM25 2h1v1h-1zM28 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM13 3h1v1h-1zM17 3h1v1h-1zM20 3h1v1h-1zM23 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM34 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h2v1h-2zM13 4h2v1h-2zM16 4h3v1h-3zM21 4h3v1h-3zM28 4h1v1h-1zM30 4h3v1h-3zM34 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM10 5h2v1h-2zM13 5h2v1h-2zM17 5h1v1h-1zM20 5h2v1h-2zM23 5h1v1h-1zM26 5h1v1h-1zM28 5h1v1h-1zM30 5h3v1h-3zM34 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h1v1h-1zM15 6h5v1h-5zM22 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h3v1h-3zM34 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM14 7h3v1h-3zM19 7h1v1h-1zM21 7h1v1h-1zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h7v1h-7zM10 9h2v1h-2zM16 9h1v1h-1zM18 9h1v1h-1zM21 9h6v1h-6zM2 10h1v1h-1zM4 10h5v1h-5zM14 10h3v1h-3zM19 10h1v1h-1zM21 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h5v1h-5zM2 11h1v1h-1zM5 11h3v1h-3zM10 11h2v1h-2zM14 11h3v1h-3zM18 11h4v1h-4zM24 11h2v1h-2zM28 11h2v1h-2zM31 11h2v1h-2zM34 11h1v1h-1zM5 12h4v1h-4zM10 12h1v1h-1zM12 12h1v1h-1zM15 12h5v1h-5zM22 12h1v1h-1zM24 12h1v1h-1zM30 12h1v1h-1zM32 12h2v1h-2zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h2v1h-2zM12 13h2v1h-2zM15 13h1v1h-1zM18 13h5v1h-5zM27 13h2v1h-2zM30 13h3v1h-3zM2 14h2v1h-2zM7 14h3v1h-3zM12 14h3v1h-3zM16 14h1v1h-1zM18 14h1v1h-1zM21 14h4v1h-4zM27 14h1v1h-1zM30 14h2v1h-2zM33 14h2v1h-2zM2 15h1v1h-1zM4 15h3v1h-3zM10 15h1v1h-1zM12 15h4v1h-4zM17 15h1v1h-1zM19 15h2v1h-2zM23 15h1v1h-1zM25 15h1v1h-1zM27 15h2v1h-2zM31 15h1v1h-1zM33 15h2v1h-2zM2 16h1v1h-1zM5 16h2v1h-2zM8 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM15 16h1v1h-1zM17 16h3v1h-3zM22 16h1v1h-1zM27 16h2v1h-2zM30 16h2v1h-2zM33 16h1v1h-1zM2 17h2v1h-2zM5 17h1v1h-1zM11 17h5v1h-5zM17 17h1v1h-1zM20 17h1v1h-1zM23 17h2v1h-2zM26 17h3v1h-3zM30 17h3v1h-3zM2 18h1v1h-1zM4 18h1v1h-1zM7 18h2v1h-2zM10 18h1v1h-1zM14 18h1v1h-1zM17 18h1v1h-1zM19 18h1v1h-1zM24 18h1v1h-1zM26 18h2v1h-2zM29 18h2v1h-2zM34 18h1v1h-1zM2 19h2v1h-2zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM20 19h6v1h-6zM28 19h2v1h-2zM31 19h2v1h-2zM34 19h1v1h-1zM3 20h2v1h-2zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h3v1h-3zM15 20h4v1h-4zM20 20h1v1h-1zM22 20h2v1h-2zM29 20h2v1h-2zM32 20h2v1h-2zM3 21h1v1h-1zM5 21h1v1h-1zM9 21h3v1h-3zM15 21h4v1h-4zM23 21h2v1h-2zM28 21h5v1h-5zM34 21h1v1h-1zM2 22h2v1h-2zM6 22h3v1h-3zM11 22h3v1h-3zM17 22h1v1h-1zM20 22h2v1h-2zM23 22h1v1h-1zM25 22h1v1h-1zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h2v1h-2zM2 23h2v1h-2zM5 23h1v1h-1zM7 23h1v1h-1zM9 23h2v1h-2zM12 23h1v1h-1zM15 23h1v1h-1zM17 23h3v1h-3zM22 23h4v1h-4zM28 23h2v1h-2zM32 23h1v1h-1zM34 23h1v1h-1zM2 24h1v1h-1zM5 24h1v1h-1zM7 24h2v1h-2zM11 24h1v1h-1zM21 24h1v1h-1zM23 24h2v1h-2zM27 24h2v1h-2zM30 24h4v1h-4zM2 25h1v1h-1zM10 25h1v1h-1zM13 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM20 25h4v1h-4zM28 25h1v1h-1zM30 25h3v1h-3zM2 26h1v1h-1zM6 26h3v1h-3zM11 26h3v1h-3zM15 26h2v1h-2zM19 26h1v1h-1zM21 26h1v1h-1zM24 26h7v1h-7zM33 26h2v1h-2zM10 27h4v1h-4zM18 27h5v1h-5zM24 27h1v1h-1zM26 27h1v1h-1zM30 27h1v1h-1zM32 27h1v1h-1zM34 27h1v1h-1zM2 28h7v1h-7zM11 28h3v1h-3zM17 28h1v1h-1zM19 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h1v1h-1zM32 28h2v1h-2zM2 29h1v1h-1zM8 29h1v1h-1zM10 29h4v1h-4zM15 29h2v1h-2zM18 29h3v1h-3zM22 29h1v1h-1zM25 29h2v1h-2zM30 29h5v1h-5zM2 30h1v1h-1zM4 30h3v1h-3zM8 30h1v1h-1zM10 30h3v1h-3zM15 30h1v1h-1zM18 30h1v1h-1zM22 30h3v1h-3zM26 30h6v1h-6zM33 30h1v1h-1zM2 31h1v1h-1zM4 31h3v1h-3zM8 31h1v1h-1zM10 31h1v1h-1zM13 31h3v1h-3zM17 31h1v1h-1zM19 31h2v1h-2zM23 31h1v1h-1zM25 31h3v1h-3zM30 31h3v1h-3zM34 31h1v1h-1zM2 32h1v1h-1zM4 32h3v1h-3zM8 32h1v1h-1zM10 32h1v1h-1zM14 32h1v1h-1zM17 32h2v1h-2zM20 32h1v1h-1zM22 32h5v1h-5zM28 32h2v1h-2zM32 32h1v1h-1zM2 33h1v1h-1zM8 33h1v1h-1zM11 33h1v1h-1zM13 33h1v1h-1zM15 33h1v1h-1zM17 33h1v1h-1zM23 33h3v1h-3zM30 33h1v1h-1zM32 33h1v1h-1zM2 34h7v1h-7zM10 34h1v1h-1zM12 34h1v1h-1zM15 34h1v1h-1zM17 34h1v1h-1zM19 34h1v1h-1zM24 34h1v1h-1zM26 34h4v1h-4zM33 34h1v1h-1z"/></svg>
+        <div class="qr-text">
+          <b>Наведите камеру телефона</b>
+          <span>Откроется эта же страница, и нужный магазин подставится сам.</span>
+        </div>
+      </div>
+
+      <ul class="feats">
+        <li>Автобой на трёх линиях: уворачивайся, выбирай момент, прожимай способности</li>
+        <li>Дерево талантов на 55 узлов и детали (Parts) после каждого боя</li>
+        <li>Четыре акта, боссы и постоянное наследие за победу над ними</li>
+        <li>Играется без интернета</li>
+      </ul>
+    </div>
+
+    <picture class="shot">
+      <source srcset="img/hero.webp" type="image/webp">
+      <img src="img/hero.jpg" width="540" height="960" alt="Кадр боя в Hourloop" fetchpriority="high">
+    </picture>
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 NeMedi.
+  <div class="row">
+    <a href="mailto:hourloop.support@gmail.com">hourloop.support@gmail.com</a>
+    <a href="../hourloop/legal/privacy-ru.html">Политика конфиденциальности</a>
+    <a href="../index.html">О студии</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== Яндекс.Метрика =========================================
+     Счётчик 112089390 (аккаунт NeMedi, домен nemedistudio.online).
+     Цели в кабинете — тип «JavaScript-событие», идентификаторы
+     rustore_click и appgallery_click. Именно они идут в Директ
+     целью оптимизации: установку в RuStore сайт увидеть не может,
+     поэтому считаем последний шаг, который ему виден.
+     `ecommerce` из сгенерированного кода убран — товаров тут нет;
+     `defer` НЕ ставить: он отменяет автоматическую отправку
+     просмотра страницы, и визиты пришлось бы слать вручную.        */
+  var METRIKA_ID = 112089390;
+
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    for (var j = 0; j < e.scripts.length; j++) { if (e.scripts[j].src === r) return; }
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+    k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=" + METRIKA_ID, "ym");
+
+  window.ym(METRIKA_ID, "init", {
+    ssr: true, clickmap: true, trackLinks: true,
+    accurateTrackBounce: true, webvisor: true
+  });
+
+  function goal(name, params) {
+    if (window.ym) window.ym(METRIKA_ID, "reachGoal", name, params || {});
+  }
+
+  /* ===== Определение устройства ===============================
+     Порядок проверок важен: HarmonyOS и HMSCore встречаются только
+     у Huawei, а Honor с 2021 года снова ездит с сервисами Google и
+     AppGallery на нём нет — поэтому Honor из ветки Huawei исключён. */
+  var ua = navigator.userAgent || "";
+  var isHuawei = /huawei|harmonyos|hmscore/i.test(ua) && !/honor/i.test(ua);
+  var isIOS = /iphone|ipad|ipod/i.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isMobile = (navigator.userAgentData && typeof navigator.userAgentData.mobile === "boolean")
+    ? navigator.userAgentData.mobile
+    : /android|iphone|ipad|ipod|mobile|windows phone/i.test(ua);
+
+  var stores = document.getElementById("stores");
+  var ruBtn  = document.getElementById("s-rustore");
+  var hwBtn  = document.getElementById("s-appgallery");
+
+  if (isIOS) {
+    /* Обе кнопки остаются, но врать «скачай сейчас» человеку с iPhone нельзя */
+    document.getElementById("ios-note").style.display = "block";
+  } else if (isHuawei) {
+    hwBtn.classList.add("primary");
+    stores.insertBefore(hwBtn, ruBtn);
+  } else if (isMobile) {
+    ruBtn.classList.add("primary");
+  }
+
+  if (!isMobile) {
+    document.getElementById("qr-box").style.display = "flex";
+  }
+
+  /* ===== Цели на клик ========================================= */
+  [ruBtn, hwBtn].forEach(function (el) {
+    el.addEventListener("click", function () {
+      var src = "direct";
+      try { src = new URLSearchParams(location.search).get("src") || "direct"; } catch (e) {}
+      goal(el.getAttribute("data-goal"), { src: src });
+    });
+  });
+})();
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/112089390" style="position:absolute;left:-9999px" alt=""></div></noscript>
+
+</body>
+</html>
