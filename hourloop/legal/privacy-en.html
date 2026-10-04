@@ -31,7 +31,7 @@
       <div class="legal-header">
         <h1>Privacy Policy — Hourloop</h1>
         <div class="legal-meta">
-          <span><strong>Last updated:</strong> 26 September 2026</span>
+          <span><strong>Last updated:</strong> 4 October 2026</span>
         </div>
         <div class="lang-switch">
           <a href="privacy-ru.html" class="lang-btn">Русский</a>
@@ -48,10 +48,11 @@
         <hr style="border: 0; border-top: 1px solid rgba(255, 43, 58, 0.2); margin: 24px 0;">
 
         <h2>1. In short</h2>
-        <p>The Game <strong>requires no registration and never asks for your name, email, phone number or payment details</strong>. Run progress and settings are stored on your device only. <strong>The exception is chronites, keys, and banner items</strong>: to prevent balance tampering and cheating, they are stored on the game server and linked to a randomly generated player ID rather than to an individual or a permanent device identifier.</p>
-        <p>Three kinds of data leave your device, and none of them identifies you personally:</p>
+        <p>The Game <strong>requires no registration and never asks for your name, email, phone number or payment details</strong>. Run progress and settings are stored on your device only. <strong>The exception is chronites, keys, and banner items</strong>: to prevent balance tampering and cheating, they are stored on the game server and linked to a randomly generated player ID rather than to an individual or a permanent device identifier. Optionally, you can link a VK ID or email address to your account to transfer chronites, keys, and items to another phone (linking is entirely voluntary; without it the Game works as before).</p>
+        <p>Four kinds of data leave your device, and none of them identifies you personally:</p>
         <ul>
           <li>data of the <strong>game server wallet, banner, and Clock Tower</strong> (section 4): chronite and key balances, items obtained, run sessions, and pull history, linked to a random player ID. In the weekly tower leaderboard, other players see a generated name, floor, and time, never your player ID;</li>
+          <li><strong>account linking data, if you linked an account</strong> (section 4): your VK user ID or email address for logging into the same account on another phone;</li>
           <li>data collected by <strong>advertising networks</strong> in order to serve ads (section 5). Ads are shown only when you tap the rewarded-video button;</li>
           <li>anonymous <strong>gameplay statistics</strong> the Game sends to the AppMetrica analytics service (section 6): how far players get, where they lose most often, which upgrades they pick. This data is used to tune difficulty and balance.</li>
         </ul>
@@ -80,6 +81,12 @@
               <td>crediting and securely storing chronites, keys and banner items with anti-tamper protection, weekly tower leaderboard, awarding chronites for milestones and keys for Game+ tiers (in Game versions where these mechanics are enabled)</td>
               <td>developer (hosted on Yandex Cloud)</td>
               <td>necessary for server wallet, banner, Clock Tower, and Game+ rewards</td>
+            </tr>
+            <tr>
+              <td>VK user ID or email address — if you linked your account</td>
+              <td>logging into the same account on another phone</td>
+              <td>developer (hosted on Yandex Cloud), code email delivery — Yandex Cloud Postbox, VK ID login — VK LLC</td>
+              <td><strong>your consent:</strong> linking occurs solely by your action; the game works without it</td>
             </tr>
             <tr>
               <td>Name in the Clock Tower weekly leaderboard, floor and time</td>
@@ -150,8 +157,8 @@
               <td>so you are not asked on every launch</td>
             </tr>
             <tr>
-              <td>Wallet access token with random player ID, last known balance, current Clock Tower week data, and confirmed Game+ tier (reward_auth.json)</td>
-              <td>to authenticate requests to the game server and display balance and tower week data when offline</td>
+              <td>Wallet access token with random player ID, last known balance, current Clock Tower week data, confirmed Game+ tier, VK ID / email linking flags, and email mask such as p***@mail.ru (reward_auth.json)</td>
+              <td>to authenticate requests to the game server, display balance and tower week data when offline, and show linking status</td>
             </tr>
             <tr>
               <td>Pending operations queue: reward claims, purchases, pulls, tower run results, and Game+ tier key claims (reward_pending.json)</td>
@@ -169,6 +176,8 @@
         <p><strong>What is stored on the server:</strong></p>
         <ul>
           <li><strong>Wallet:</strong> randomly generated player ID, access token, random installation token, chronite and key balances, lifetime earned/spent counters, creation timestamp;</li>
+          <li><strong>Account links (auth_links):</strong> sign-in method (VK ID or email), VK user ID or email address, player ID, link timestamp;</li>
+          <li><strong>Confirmation codes (auth_codes):</strong> neither address nor code is stored, only their cryptographic hashes (HMAC); code expiry time, remaining attempts, timestamp and daily sent email count — to protect against brute-force and spam abuse;</li>
           <li><strong>Transaction ledger:</strong> each credit and debit record (for completing an act or watching an ad, buying keys, performing gacha pulls, reaching Clock Tower milestones 10 / 20 / 30 / 40, or first-time clearance of a Game+ tier), amount and timestamp;</li>
           <li><strong>Campaign run sessions:</strong> random run session ID, last submitted act number and timestamp — used to prevent duplicate reward claims;</li>
           <li><strong>Clock Tower runs (endless_runs):</strong> random run token, week ID, start and completion timestamps <strong>according to server time</strong>, floor reached, duration, and an implausible-result flag. Start and completion times are recorded by the server to filter out implausibly fast runs: such runs are not counted and do not enter the leaderboard;</li>
@@ -180,7 +189,9 @@
 
         <p><strong>Clock Tower weekly leaderboard.</strong> Players can view the public weekly leaderboard, showing the top 100 results of the week and your own entry. Each entry contains a <strong>generated name, floor reached, completion time, and rank</strong>. Your player ID (user_id) and any other details about you are never sent to the leaderboard and are not visible to other players. <strong>Player names are not stored in the database</strong>: the server computes them on the fly from your player ID using cryptographic hashing (HMAC) in a format such as "Brass Pendulum #4821". It is impossible to recover your player ID from this name. Custom names cannot be entered.</p>
 
-        <p><strong>What the server does NOT store:</strong> your name, email address, phone number, advertising identifier (GAID/OAID), permanent device identifier (Android ID), device model, or IP address. Server functions do not log player IP addresses; the cloud hosting infrastructure may observe connection metadata solely during active network transmission, and the Game does not retain it.</p>
+        <p><strong>What the server does NOT store:</strong> your name, surname, phone number, advertising identifier (GAID/OAID), permanent device identifier (Android ID), device model, or IP address. The server retains your email address only if you voluntarily linked it to your account. From VK, the server retains strictly the VK user ID: access tokens, name, photo, phone number, and other profile details are never requested or stored. Server functions do not log player IP addresses; the cloud hosting infrastructure may observe connection metadata solely during active network transmission, and the Game does not retain it.</p>
+
+        <p><strong>Account linking and logging in on another device.</strong> Linking an account to a VK ID or email address is voluntary and configured in "Settings" → "Account". Logging in via VK ID on Android uses the official VK ID SDK (via the installed VK app or browser): the server receives a one-time code, exchanges it, and stores only the VK user ID (without access tokens, name, or contacts). To link an email, a 6-digit confirmation code is sent to the specified address (valid for 15 minutes, up to 5 attempts, at most 1 email per minute and 10 per day per address; sent via Yandex Cloud Postbox from <code>noreply@nemedistudio.online</code>, containing only the code and its expiration time). In the confirmation codes database, neither the address nor the code is saved — only their cryptographic HMAC hashes are kept. In the game itself, the email is masked as <code>p***@mail.ru</code>. When logging into a linked account on another phone, the server issues a new access token, while the previous phone loses access to this account and starts a new guest profile on next launch. On the account deletion page, signing in with VK ID is performed via a redirect to id.vk.ru (VK ID web application, VK LLC); there are no third-party VK scripts on our pages. The server exchanges the code and locates the linked account by the VK user ID to delete it. An email code for deletion is requested under the same limits, and the email message explicitly states that the code confirms account deletion. The deletion process retains no new data.</p>
 
         <p><strong>Where data is hosted:</strong> the server is hosted on <strong>Yandex Cloud (Russia)</strong>, processing data solely on behalf of the developer as an infrastructure provider.</p>
 
@@ -269,6 +280,16 @@
               <td>the data in section 5, through Yandex mediation</td>
               <td><a href="https://help.mail.ru/legal/terms/adsvk/privacy/" target="_blank" rel="noopener">help.mail.ru/legal/terms/adsvk/privacy</a></td>
             </tr>
+            <tr>
+              <td>VK LLC (VK ID)</td>
+              <td>logging in via VK ID at your option: authentication data under VK ID terms. Login statistics (api.vk.ru) and crash reports (sdk-api.apptracer.ru) are transmitted by the VK ID SDK only after tapping the VK ID sign-in button; prior to tapping, the SDK does not access the network; on the account deletion page — redirect to id.vk.ru</td>
+              <td><a href="https://id.vk.ru/terms" target="_blank" rel="noopener">id.vk.ru/terms</a></td>
+            </tr>
+            <tr>
+              <td>Yandex Cloud Postbox (Yandex Cloud LLC)</td>
+              <td>delivery of confirmation code emails: recipient address and message body pass through the service when linking an email</td>
+              <td><a href="https://yandex.com/legal/confidential/" target="_blank" rel="noopener">yandex.com/legal/confidential</a></td>
+            </tr>
           </tbody>
         </table>
         </div>
@@ -282,7 +303,7 @@
         <h2>8. How long data is kept</h2>
         <ul>
           <li><strong>On your device</strong> — until you reset progress in Settings or uninstall the Game. No automatic retention periods apply.</li>
-          <li><strong>On the game server</strong> — wallet, inventory, pull history, Clock Tower runs, and weekly best records are retained until a deletion request is received. Your entries in past weekly leaderboards remain (name, floor, time) until account deletion. <strong>Please note:</strong> resetting progress in Settings or uninstalling the Game removes only local files and <strong>does not delete</strong> data from the server. Reinstalling the Game creates a new separate wallet with a new random ID, leaving the old one inaccessible. Full deletion of server data is handled upon request (section 9).</li>
+          <li><strong>On the game server</strong> — wallet data, account links (auth_links), inventory, pull history, Clock Tower runs, and weekly best records are retained until the account is deleted (in the game, on the account deletion page, or upon request to support; account links are kept as long as the account exists). One-time confirmation code records (auth_codes) are overwritten by subsequent requests and do not contain email addresses. Your entries in past weekly leaderboards remain (name, floor, time) until account deletion. <strong>Please note:</strong> resetting progress in Settings or uninstalling the Game removes only local files and <strong>does not delete</strong> data from the server. Reinstalling the Game creates a new separate wallet with a new random ID, leaving the old one inaccessible (unless the account was linked to a VK ID or email). Deletion methods are listed in section 9.</li>
           <li><strong>By the advertising networks and AppMetrica</strong> — for the periods set by their own policies (links in section 7). The developer does not control those periods.</li>
         </ul>
 
@@ -291,7 +312,7 @@
           <li><strong>Change your ad personalisation decision:</strong> Settings → the relevant-ads toggle. It takes effect immediately and is passed to every network, AppMetrica included.</li>
           <li><strong>Reset your advertising identifier:</strong> in your device settings, under privacy or ads. After a reset neither the ad networks nor the analytics recognise you any more.</li>
           <li><strong>Delete data from your device:</strong> Settings → reset progress permanently deletes game progress and run history. Uninstalling the app removes every file listed in section 3.</li>
-          <li id="delete-server"><strong>Delete data from the game server:</strong> send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject "Account deletion" and provide your Player ID. You can find your ID in the game: Shop tab → History subtab (displayed at the bottom of the screen; tapping the line copies the ID to your clipboard). Requests are fulfilled within <strong>30 days</strong>: your server wallet, transaction ledger, run sessions, guarantee counters, pull history, items, Clock Tower runs, and records in all weekly leaderboards will be permanently deleted. Detailed instructions and deletion procedures are available on the <a href="delete-account-en.html">account deletion page</a>.</li>
+          <li id="delete-server"><strong>Delete data from the game server:</strong> three methods are provided: 1) <strong>in the game immediately</strong> — "Settings" → "Account" → "Delete account" → "Delete forever" (works for any account, including unlinked guest profiles); 2) <strong>on the account deletion page for linked accounts immediately</strong> — via VK ID sign-in or email confirmation code; 3) <strong>by email to support with Player ID within 30 days</strong> — send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject "Account deletion" and provide your Player ID (find your ID in the game: Shop tab → History subtab; if you linked an email, you may write from that email without specifying the Player ID). Server deletion permanently erases the wallet, VK ID and email links, email confirmation codes (auth_codes), transaction ledger, run sessions, guarantee counters, pull history, items, Clock Tower runs, and leaderboard records. Detailed instructions and the deletion form are available on the <a href="delete-account-en.html">account deletion page</a>.</li>
           <li><strong>Ask a question or submit a request about data processing:</strong> write to the address in section 12.</li>
           <li><strong>Contact the recipients directly:</strong> rights regarding data processed by Yandex, Huawei and VK are exercised through them; the procedure is described in their policies, linked in section 7.</li>
         </ul>

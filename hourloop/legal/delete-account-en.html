@@ -6,6 +6,7 @@
   <title>Delete your Hourloop account — NeMedi</title>
   <link rel="icon" type="image/png" href="../../assets/app_icon.png">
   <link rel="stylesheet" href="../../style.css">
+  <script src="delete-account.js" defer></script>
 </head>
 <body>
 
@@ -33,7 +34,7 @@
         <div class="legal-meta">
           <span>Game: <strong>Hourloop: Auto-Battler Roguelike</strong></span>
           <span>Developer: <strong>NeMedi</strong></span>
-          <span><strong>Last updated:</strong> 26 September 2026</span>
+          <span><strong>Last updated:</strong> 4 October 2026</span>
         </div>
         <div class="lang-switch" style="margin: 10px 0 0;">
           <a href="delete-account-ru.html" class="lang-btn">Русский</a>
@@ -42,24 +43,85 @@
       </div>
 
       <div class="legal-body">
-        <p style="margin-bottom: 12px;">The game <strong>Hourloop: Auto-Battler Roguelike</strong> (developed by <strong>NeMedi</strong>) requires no registration: in Game versions featuring the chronite mechanics, the Game automatically creates an account with a random Player ID on the server to securely store chronites, keys, items, and Clock Tower results (if your version has no chronites, no account exists on the server). To request account deletion, follow the steps below:</p>
+        <p style="margin-bottom: 12px;">The game <strong>Hourloop: Auto-Battler Roguelike</strong> (developed by <strong>NeMedi</strong>) requires no registration: in Game versions featuring the chronite mechanics, the Game automatically creates an account with a random Player ID on the server to securely store chronites, keys, items, and Clock Tower results (if your version has no chronites, no account exists on the server). Account deletion can be performed via the methods below:</p>
 
+        <h2>1. In the game — immediately</h2>
+        <p>Works for any account, including unlinked guest profiles:</p>
+        <p>Open <strong>"Settings"</strong> → <strong>"Account"</strong> → <strong>"Delete account"</strong> → <strong>"Delete forever"</strong>. The account and all of its data on the server will be erased immediately.</p>
+
+        <h2>2. Here, without the game — immediately</h2>
+        <p>For accounts linked to a <strong>VK ID</strong> or <strong>email</strong>, deletion is performed on this page:</p>
+
+        <noscript>
+          <div class="hl-noscript">
+            JavaScript is required to delete your account here. You can also delete your account in the game or by emailing support — see methods below.
+          </div>
+        </noscript>
+
+        <div id="hl-delete-section" class="hl-delete-box">
+          <div id="hl-form-box">
+            <div class="hl-consent-wrap">
+              <label class="hl-consent-label" for="hl-consent-check">
+                <input type="checkbox" id="hl-consent-check" class="hl-checkbox">
+                <span class="hl-consent-text">I understand: the account and all of its data will be permanently erased from the server immediately.</span>
+              </label>
+            </div>
+
+            <div class="hl-method-group">
+              <div class="hl-method-title">Via VK ID</div>
+              <button type="button" id="hl-vk-btn" class="hl-btn hl-btn-vk" disabled>Sign in with VK ID and delete</button>
+            </div>
+
+            <div class="hl-divider">
+              <span>or by email</span>
+            </div>
+
+            <div class="hl-method-group">
+              <div class="hl-method-title">Via email confirmation code</div>
+              <div class="hl-field-row">
+                <input type="email" id="hl-email-input" class="hl-input" placeholder="name@example.com" autocomplete="email">
+                <button type="button" id="hl-email-code-btn" class="hl-btn hl-btn-secondary" disabled>Get code</button>
+              </div>
+
+              <div id="hl-code-row" class="hl-code-row" style="display: none;">
+                <div class="hl-field-row">
+                  <input type="text" id="hl-code-input" class="hl-input hl-input-code" placeholder="000000" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+                  <button type="button" id="hl-email-delete-btn" class="hl-btn hl-btn-danger" disabled>Delete account</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="hl-status" class="hl-status" aria-live="polite"></div>
+          </div>
+
+          <div id="hl-success-box" class="hl-success-box" style="display: none;">
+            <div id="hl-success-text" class="hl-success-text"></div>
+          </div>
+        </div>
+
+        <h2>3. By email to support — up to 30 days</h2>
         <div style="background: rgba(255, 43, 58, 0.08); border: 1px solid rgba(255, 43, 58, 0.3); border-radius: var(--radius-md); padding: 16px 20px; margin: 12px 0 24px;">
-          <h2 style="margin: 0 0 10px 0; border-left: none; padding-left: 0; color: #fff; font-size: 1.25rem;">How to delete your account from the server</h2>
           <ol style="margin: 0 0 0 20px; padding: 0;">
-            <li style="margin-bottom: 8px;"><strong>Copy your Player ID in the game:</strong> open the <strong>Shop</strong> tab → <strong>History</strong> subtab (at the bottom of the screen) and tap the <code>Player ID</code> line — the identifier will be copied to your clipboard.</li>
-            <li style="margin-bottom: 8px;"><strong>Send a deletion request:</strong> send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject <strong>"Account deletion"</strong>, specifying your copied Player ID in the body of the message.</li>
+            <li style="margin-bottom: 8px;"><strong>Copy your Player ID in the game:</strong> open the <strong>Shop</strong> tab → <strong>History</strong> subtab (at the bottom of the screen) and tap the <code>Player ID</code> line — the identifier will be copied to your clipboard. If you linked an email, you may write to support directly from that email address without specifying your Player ID.</li>
+            <li style="margin-bottom: 8px;"><strong>Send a deletion request:</strong> send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject <strong>"Account deletion"</strong>, specifying your copied Player ID in the message body (or send from your linked email).</li>
             <li style="margin-bottom: 0;"><strong>Processing time:</strong> player support will confirm receipt; all data associated with the specified Player ID will be permanently and irreversibly deleted from the game server within <strong>30 days</strong>.</li>
           </ol>
         </div>
 
         <h2>If the game is already uninstalled and the ID was not saved</h2>
-        <p>If you have already deleted the Game from your device and did not save your Player ID, <strong>it is impossible to locate your account</strong>. The Game does not request or link your account to an email address, phone number, or permanent device identifier. Without the Player ID, neither the developer nor anyone else can determine which record in the database belonged to you. Furthermore, nobody can log in to your old account either: the secret authentication token was stored strictly in an internal file on your device and was deleted alongside the application.</p>
+        <p>If you have already deleted the Game from your device and did not save your Player ID, account deletion depends on whether you linked your account:</p>
+        <ul>
+          <li><strong>If you linked an email:</strong> delete your account on this page using a confirmation code sent to your email, or send a deletion request to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject "Account deletion" directly from that linked email address without needing the Player ID.</li>
+          <li><strong>If you linked a VK ID:</strong> delete your account on this page via VK ID.</li>
+          <li><strong>If you did not link your account:</strong> it is impossible to locate your account. The Game collects no personal data, and without your Player ID, neither the developer nor anyone else can determine which record in the database belonged to you. Furthermore, nobody can log in to your old account either: the secret access token was stored strictly in an internal file on your device and was deleted alongside the application.</li>
+        </ul>
 
         <h2>What data is deleted from the server</h2>
-        <p>Upon processing the deletion request for your Player ID, the following data is permanently erased:</p>
+        <p>Upon deletion (in the game and on this page — immediately; by email request — within 30 days), the following data is permanently erased:</p>
         <ul>
           <li><strong>Wallet and authentication:</strong> the wallet record, balances of chronites, winding keys, and gilded keys, and the authentication token;</li>
+          <li><strong>Account links:</strong> stored links to your VK user ID or email address;</li>
+          <li><strong>Email confirmation codes (auth_codes):</strong> record by address fingerprint;</li>
           <li><strong>Transaction ledger:</strong> the complete history of currency credits and debits, weekly milestones, and Game+ tier confirmations;</li>
           <li><strong>Run sessions:</strong> campaign session identifiers and timestamps;</li>
           <li><strong>Banner guarantees (pity):</strong> counters of performed pulls;</li>
@@ -69,7 +131,7 @@
         </ul>
 
         <h2>What the game server does not store</h2>
-        <p>The game server never collects or stores your name, email address, phone number, permanent device identifier (Android ID), advertising identifier (GAID/OAID), device model, or IP address. Since this information is never collected or retained on the server, there is nothing to delete.</p>
+        <p>The game server never collects or stores your name, phone number, permanent device identifier (Android ID), advertising identifier (GAID/OAID), device model, or IP address, nor your email address (unless you voluntarily linked it to your account). Since this information is never retained on the server, there is nothing to delete.</p>
 
         <h2>What happens to other data</h2>
         <ul>

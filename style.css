@@ -951,3 +951,273 @@ footer {
     scroll-snap-stop: normal;
   }
 }
+
+/* ==========================================================================
+   Account Deletion Form (Task 142)
+   ========================================================================== */
+
+.hl-delete-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: clamp(16px, 4vw, 24px);
+  margin: 16px 0 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hl-consent-wrap {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  background: rgba(255, 43, 58, 0.08);
+  border: 1px solid rgba(255, 43, 58, 0.25);
+  border-radius: var(--radius-sm);
+}
+
+.hl-consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.hl-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--accent-gold);
+  cursor: pointer;
+}
+
+.hl-consent-text {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text-main);
+}
+
+.hl-method-group {
+  margin-bottom: 16px;
+}
+
+.hl-method-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.hl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  min-height: 46px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.hl-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.hl-btn-vk {
+  background: #0077ff;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  box-shadow: 0 4px 14px rgba(0, 119, 255, 0.25);
+}
+
+.hl-btn-vk:hover:not(:disabled) {
+  background: #0066ee;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+}
+
+.hl-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.hl-btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--border-hover);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.hl-btn-danger {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-brass) 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px var(--accent-gold-glow);
+  white-space: nowrap;
+}
+
+.hl-btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(255, 43, 58, 0.5);
+}
+
+.hl-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0;
+  color: var(--text-dark);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hl-divider::before,
+.hl-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hl-divider span {
+  padding: 0 12px;
+}
+
+.hl-field-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.hl-field-row .hl-input {
+  flex: 1;
+  min-width: 160px;
+}
+
+.hl-input {
+  background: rgba(14, 14, 18, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  min-height: 46px;
+  transition: var(--transition);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.hl-input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(255, 43, 58, 0.2);
+}
+
+.hl-input-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.25rem;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.hl-code-row {
+  margin-top: 10px;
+}
+
+.hl-status {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  min-height: 22px;
+  word-break: break-word;
+}
+
+.hl-status-error {
+  color: #ff6b76;
+  font-weight: 500;
+}
+
+.hl-status-success {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.hl-success-box {
+  background: rgba(46, 213, 115, 0.08);
+  border: 1px solid rgba(46, 213, 115, 0.35);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 14px 0;
+}
+
+.hl-success-text {
+  color: #f4f4f6;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.hl-noscript {
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid rgba(255, 170, 0, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin: 12px 0;
+  color: #ffc107;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.hl-callback-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: clamp(20px, 5vw, 32px);
+  margin: 20px 0;
+}
+
+.hl-callback-actions {
+  margin-top: 20px;
+}
+
+.hl-return-link {
+  display: inline-flex;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .hl-field-row {
+    flex-direction: column;
+  }
+
+  .hl-field-row .hl-btn {
+    width: 100%;
+  }
+
+  .hl-input-code {
+    letter-spacing: 3px;
+    font-size: 1.15rem;
+  }
+}
+
