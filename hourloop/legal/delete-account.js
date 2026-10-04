@@ -49,6 +49,7 @@ const TEXTS = {
     get_code_btn: "Получить код",
     vk_canceled: "Вход через VK ID отменён.",
     session_expired: "Сессия входа устарела или открыта в другой вкладке. Начните заново.",
+    consent_required: "Сначала отметьте согласие выше.",
     return_link: "← Вернуться на страницу удаления",
     callback_title: "Удаление аккаунта Hourloop"
   },
@@ -73,6 +74,7 @@ const TEXTS = {
     get_code_btn: "Get code",
     vk_canceled: "VK ID sign-in was canceled.",
     session_expired: "Sign-in session has expired or was opened in another tab. Please start over.",
+    consent_required: "Please tick the consent box above first.",
     return_link: "← Return to account deletion page",
     callback_title: "Hourloop Account Deletion"
   }
@@ -163,29 +165,55 @@ function initDeletePage() {
   const successBox = document.getElementById("hl-success-box");
   const successText = document.getElementById("hl-success-text");
 
+  const consentWrap = consentCheck ? consentCheck.closest(".hl-consent-wrap") : null;
+
   let isBusy = false;
   let resendTimer = null;
   let resendSeconds = 0;
   let sentEmail = "";
+  let consentFlashTimer = null;
+  let consentHintShown = false;
 
   function setStatus(msg, isError = false) {
     if (!statusEl) return;
     statusEl.textContent = msg;
     statusEl.className = isError ? "hl-status hl-status-error" : "hl-status";
+    consentHintShown = false;
   }
 
+  // Кнопки VK ID здесь нет намеренно (задача 143): по требованиям VK к виду кнопки
+  // она не бывает неактивной и не бледнеет. Нажатие без флажка разбирает её обработчик.
   function updateButtonsState() {
     const consentGiven = consentCheck && consentCheck.checked;
     if (!consentGiven || isBusy) {
-      if (vkBtn) vkBtn.disabled = true;
       if (emailCodeBtn) emailCodeBtn.disabled = true;
       if (emailDeleteBtn) emailDeleteBtn.disabled = true;
       return;
     }
 
-    if (vkBtn) vkBtn.disabled = false;
     if (emailCodeBtn) emailCodeBtn.disabled = resendSeconds > 0;
     if (emailDeleteBtn) emailDeleteBtn.disabled = false;
+  }
+
+  function stopConsentFlash() {
+    if (consentFlashTimer) {
+      clearTimeout(consentFlashTimer);
+      consentFlashTimer = null;
+    }
+    if (consentWrap) consentWrap.classList.remove("hl-consent-flash");
+  }
+
+  // Нажали «Продолжить с VK ID» без флажка: подсказка в строке состояния, фокус на
+  // флажок и подсветка блока согласия на 2 секунды.
+  function askConsent() {
+    setStatus(t.consent_required, true);
+    consentHintShown = true;
+    if (consentCheck) consentCheck.focus();
+    if (!consentWrap) return;
+    stopConsentFlash();
+    void consentWrap.offsetWidth; // перезапуск анимации при повторном нажатии
+    consentWrap.classList.add("hl-consent-flash");
+    consentFlashTimer = setTimeout(stopConsentFlash, 2000);
   }
 
   function startResendCountdown(seconds) {
@@ -215,6 +243,11 @@ function initDeletePage() {
 
   if (consentCheck) {
     consentCheck.addEventListener("change", () => {
+      // Флажок поставлен — подсказка про согласие и подсветка больше не нужны.
+      if (consentCheck.checked && consentHintShown) {
+        setStatus("");
+        stopConsentFlash();
+      }
       updateButtonsState();
     });
   }
@@ -338,7 +371,12 @@ function initDeletePage() {
 
   if (vkBtn) {
     vkBtn.addEventListener("click", async () => {
-      if (!consentCheck || !consentCheck.checked || isBusy) return;
+      // Переход уже идёт — повторные нажатия игнорируются молча.
+      if (isBusy) return;
+      if (!consentCheck || !consentCheck.checked) {
+        askConsent();
+        return;
+      }
 
       isBusy = true;
       updateButtonsState();

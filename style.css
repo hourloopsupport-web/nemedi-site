@@ -1037,20 +1037,6 @@ footer {
   box-shadow: none !important;
 }
 
-.hl-btn-vk {
-  background: #0077ff;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.2);
-  width: 100%;
-  box-shadow: 0 4px 14px rgba(0, 119, 255, 0.25);
-}
-
-.hl-btn-vk:hover:not(:disabled) {
-  background: #0066ee;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
-}
-
 .hl-btn-secondary {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
@@ -1221,3 +1207,79 @@ footer {
   }
 }
 
+/* ==========================================================================
+   VK ID Button (Task 143) — CSS пользовательской кнопки VK ID для Web,
+   дословно из документации VK. Не править: вид кнопки задают требования VK.
+   ========================================================================== */
+
+.VkIdWebSdk__button_reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+.VkIdWebSdk__button {
+  background: #0077ff;
+  cursor: pointer;
+  transition: all .1s ease-out;
+}
+
+.VkIdWebSdk__button:hover {
+  opacity: 0.8;
+}
+
+.VkIdWebSdk__button:active {
+  opacity: .7;
+  transform: scale(.97);
+}
+
+.VkIdWebSdk__button {
+  border-radius: 8px;
+  width: 100%;
+  min-height: 44px;
+}
+
+.VkIdWebSdk__button_container {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.VkIdWebSdk__button_icon + .VkIdWebSdk__button_text {
+  margin-left: -28px;
+}
+
+.VkIdWebSdk__button_text {
+  display: flex;
+  font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif;
+  flex: 1;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* Подсветка блока согласия на 2 с: «Продолжить с VK ID» нажали без флажка (Task 143) */
+.hl-consent-flash {
+  animation: hl-consent-flash 2s ease-out;
+}
+
+@keyframes hl-consent-flash {
+  0%,
+  70% {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(255, 43, 58, 0.4);
+  }
+
+  100% {
+    border-color: rgba(255, 43, 58, 0.25);
+    box-shadow: 0 0 0 3px rgba(255, 43, 58, 0);
+  }
+}
