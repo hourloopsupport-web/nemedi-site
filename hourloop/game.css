@@ -1,0 +1,229 @@
+/* game.css — страницы ИГРЫ на сайте в палитре игры.
+   Вариант 2, утверждён разработчиком 09.10.2026 (Brand/BRAND.md): палитра игры,
+   шрифт игры в коротких заголовках, прямые углы.
+
+   Подключается ПОСЛЕ ../../style.css и ../../brand.css на страницах
+   hourloop/legal/ и hourloop/vkid/. Витрина студии (index.html) его не подключает
+   и остаётся в стиле студии.
+
+   ЦВЕТА — ТОЛЬКО var(--hl-*) из brand.css (источник — Brand/brand.json). Литерал
+   цвета здесь — ошибка, её ловит tools/check_brand.py.
+
+   НЕ ТРОГАЕТ .VkIdWebSdk__* — кнопка VK ID свёрстана по требованиям VK дословно
+   (hourloop/RELEASE.md, «Сайт и правовые документы»). */
+
+/* Переменные витрины студии, переведённые на палитру игры: всё, что в style.css
+   красится через var(--…), перекрашивается здесь одним блоком. */
+:root {
+  --bg-dark: var(--hl-dark2);
+  --bg-surface: var(--hl-dark2);
+  --bg-card: var(--hl-brown-dk);
+  --bg-card-hover: var(--hl-brown-dk);
+  --accent-gold: var(--hl-gold);
+  --accent-gold-glow: transparent;
+  --accent-brass: var(--hl-brass);
+  --accent-blue: var(--hl-blue-dk);
+  --accent-cyan: var(--hl-blue-lt);
+  --text-main: var(--hl-text);
+  --text-muted: var(--hl-text-muted);
+  --text-dark: var(--hl-text-muted);
+  --border-color: var(--hl-brass-md);
+  --border-hover: var(--hl-brass);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+}
+
+body {
+  font-family: var(--hl-font-text);
+  background-color: var(--hl-dark2);
+  background-image: none;
+}
+
+/* ── Шапка и подвал ─────────────────────────────────────────────────────────── */
+header {
+  background: var(--hl-dark2);
+  border-bottom: 2px solid var(--hl-brass-dk);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.brand-mark { filter: none; }
+.brand-name {
+  font-family: var(--hl-font-display);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--hl-cream);
+}
+.nav-links a {
+  background: transparent;
+  border-color: var(--hl-brass-md);
+  border-radius: 0;
+  color: var(--hl-text-muted);
+}
+.nav-links a:hover,
+.nav-links a:active {
+  background: transparent;
+  border-color: var(--hl-gold);
+  color: var(--hl-gold);
+}
+footer {
+  background: var(--hl-dark2);
+  border-top: 2px solid var(--hl-brass-dk);
+}
+
+/* ── Лист документа ─────────────────────────────────────────────────────────── */
+.legal-wrapper {
+  background: var(--hl-brown-dk);
+  border: 2px solid var(--hl-brass);
+  outline: 2px solid var(--hl-black);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.legal-header { border-bottom: 2px solid var(--hl-brass-md); }
+/* Заголовок — шрифтом игры. Шаг знака у него 1.2 кегля, поэтому кегль привязан к
+   ширине экрана и слову разрешён перенос: «конфиденциальности» на 360 px иначе
+   шире листа. */
+.legal-header h1 {
+  font-family: var(--hl-font-display);
+  font-weight: 400;
+  font-size: clamp(0.75rem, 3.3vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--hl-gold);
+  overflow-wrap: anywhere;
+}
+.legal-meta strong { color: var(--hl-text); }
+.legal-body h2 {
+  color: var(--hl-brass-lt);
+  border-left: 4px solid var(--hl-gold);
+}
+.legal-body h3 { color: var(--hl-text-name); }
+
+.lang-btn {
+  background: var(--hl-dark2);
+  border: 1px solid var(--hl-brass-md);
+  color: var(--hl-text-muted);
+}
+.lang-btn:hover,
+.lang-btn.active {
+  background: var(--hl-dark2);
+  border-color: var(--hl-gold);
+  color: var(--hl-gold);
+}
+
+.table-responsive { border: 1px solid var(--hl-brass-md); }
+.legal-body th,
+.legal-body td { border: 1px solid var(--hl-brass-dk); }
+.legal-body th {
+  background: var(--hl-dark2);
+  color: var(--hl-gold);
+}
+.legal-body td { background: transparent; }
+.legal-body code {
+  background: var(--hl-dark2);
+  color: var(--hl-blue-lt);
+}
+.hl-rule {
+  border: 0;
+  border-top: 2px solid var(--hl-brass-md);
+  margin: 24px 0;
+}
+
+/* ── Кнопки-ссылки: плашка из игры (plate_frame, 9-slice, поля 12) ──────────── */
+.btn-secondary {
+  background: transparent;
+  border: 12px solid transparent;
+  border-image: url(../assets/plate_frame.png) 12 fill / 12px stretch;
+  image-rendering: pixelated;
+  padding: 4px 12px;
+  color: var(--hl-text);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.btn-secondary:hover,
+.btn-secondary:active {
+  background: transparent;
+  color: var(--hl-brass-lt);
+  transform: none;
+  filter: brightness(1.12);
+}
+/* «Открыть →» справа — короткая подпись, шрифтом игры. */
+.legal-body .btn-secondary > span + span {
+  font-family: var(--hl-font-display);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--hl-brass-lt);
+  white-space: nowrap;
+}
+
+/* ── Удаление аккаунта: форма ───────────────────────────────────────────────── */
+.hl-delete-box,
+.hl-callback-box {
+  background: var(--hl-dark2);
+  border: 2px solid var(--hl-brass-md);
+}
+/* Блок с шагами («письмом в поддержку») — обычная врезка, латунная рамка. */
+.hl-note-box {
+  background: var(--hl-dark2);
+  border: 2px solid var(--hl-brass-md);
+  padding: 16px 20px;
+  margin: 12px 0 24px;
+}
+/* Согласие «удаляется навсегда» — цвет ошибки, а не акцент. */
+.hl-consent-wrap {
+  background: var(--hl-brown-dk);
+  border: 1px solid var(--hl-text-error);
+}
+.hl-consent-flash { animation: hl-game-consent-flash 2s ease-out; }
+@keyframes hl-game-consent-flash {
+  0%, 70% { border-color: var(--hl-gold); box-shadow: 0 0 0 3px var(--hl-text-error); }
+  100% { border-color: var(--hl-text-error); box-shadow: 0 0 0 3px transparent; }
+}
+.hl-btn-secondary {
+  background: var(--hl-brown-dk);
+  border-color: var(--hl-brass-md);
+  color: var(--hl-text);
+}
+.hl-btn-secondary:hover:not(:disabled) {
+  background: var(--hl-brown-dk);
+  border-color: var(--hl-gold);
+  color: var(--hl-gold);
+  transform: none;
+}
+/* Кнопка удаления — цвет ошибки с тёмной подписью: золото здесь читалось бы как
+   «главное действие», а это действие без возврата. */
+.hl-btn-danger {
+  background: var(--hl-text-error);
+  color: var(--hl-dark2);
+  border: 2px solid var(--hl-black);
+  box-shadow: none;
+}
+.hl-btn-danger:hover:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+  filter: brightness(1.1);
+}
+.hl-divider::before,
+.hl-divider::after { border-bottom: 1px solid var(--hl-brass-dk); }
+.hl-input {
+  background: var(--hl-black);
+  border: 1px solid var(--hl-brass-md);
+}
+.hl-input:focus {
+  border-color: var(--hl-gold);
+  box-shadow: 0 0 0 2px var(--hl-brass-dk);
+}
+.hl-status-error { color: var(--hl-text-error); }
+.hl-status-success { color: var(--hl-blue-lt); }
+.hl-success-box {
+  background: var(--hl-dark2);
+  border: 2px solid var(--hl-blue-lt);
+}
+.hl-success-text { color: var(--hl-text); }
+.hl-noscript {
+  background: var(--hl-dark2);
+  border: 1px solid var(--hl-gold);
+  color: var(--hl-gold);
+}

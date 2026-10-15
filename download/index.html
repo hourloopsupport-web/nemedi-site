@@ -3,112 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Скачать Hourloop — пиксельный рогалик-автобой</title>
-<meta name="description" content="Hourloop — бесплатный пиксельный рогалик с автобоями на трёх линиях. Скачайте в RuStore или AppGallery.">
+<title>Скачать Hourloop: Auto-Roguelike — пиксельный рогалик с автобоями</title>
+<meta name="description" content="Hourloop: Auto-Roguelike — бесплатный пиксельный рогалик с автобоями на трёх линиях. Скачайте в RuStore или AppGallery.">
 <link rel="canonical" href="https://nemedistudio.online/download/">
 <link rel="icon" type="image/png" href="../assets/app_icon.png">
 <meta name="theme-color" content="#0b0b0e">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nemedistudio.online/download/">
-<meta property="og:title" content="Hourloop — скачать бесплатно">
+<meta property="og:title" content="Hourloop: Auto-Roguelike — скачать бесплатно">
 <meta property="og:description" content="Пиксельный рогалик с автобоями на трёх линиях. Управляй часами по имени Тиктак.">
 <meta property="og:image" content="https://nemedistudio.online/download/img/hero.jpg">
 
 <style>
-/* Страница отдельная от витрины: свой инлайновый CSS без style.css (20 КБ)
-   и без Google Fonts — под рекламный трафик важнее скорость первого экрана,
-   чем совпадение шрифтов с главной. Палитра взята из style.css один в один. */
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0b0b0e; --surface:rgba(26,26,33,.72); --surface-hi:rgba(38,38,48,.9);
-  --accent:#ff2b3a; --accent-soft:rgba(255,43,58,.16);
-  --text:#f4f4f6; --muted:#a1a1ac; --dim:#6b6b76;
-  --line:rgba(255,43,58,.2); --line-hi:rgba(255,43,58,.55);
+/* Страница отдельная от витрины студии: свой инлайновый CSS без style.css и без
+   Google Fonts — под рекламный трафик важнее скорость первого экрана.
+   Вид — палитра игры, вариант 2 (Brand/BRAND.md, утверждён 09.10.2026): цвета и
+   шрифты только через --hl-*. Блок между метками gen:brand пишет генератор
+   tools/build_brand.py из Brand/brand.json — руками его не править. */
+/* gen:brand — пишет tools/build_brand.py из Brand/brand.json, руками не править */
+:root {
+  --hl-black: #000000;
+  --hl-dark2: #181410;
+  --hl-brown-dk: #4a3020;
+  --hl-gray-br: #5a4c41;
+  --hl-brass-dk: #6a4418;
+  --hl-brass-md: #9c6129;
+  --hl-brass: #cd8d29;
+  --hl-gold: #e6b239;
+  --hl-brass-lt: #f6be6a;
+  --hl-cream: #f6eab4;
+  --hl-blue-lt: #5aaac5;
+  --hl-blue-dk: #41657b;
+  --hl-text: #f0e6d1;
+  --hl-text-name: #f5e6bf;
+  --hl-text-muted: #b8a88f;
+  --hl-text-error: #ff7366;
+  --hl-font-display: "LCD 16x2 Remastered", monospace;
+  --hl-font-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+@font-face { font-family: "LCD 16x2 Remastered"; src: url(../assets/fonts/hourloop-display.woff) format("woff"); font-display: swap; }
+/* /gen:brand */
+*{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background:var(--bg); color:var(--text); line-height:1.55;
+  font-family:var(--hl-font-text);
+  background:var(--hl-dark2); color:var(--hl-text); line-height:1.55;
   min-height:100vh; display:flex; flex-direction:column;
-  background-image:
-    radial-gradient(circle at 18% 8%,rgba(255,43,58,.12) 0%,transparent 45%),
-    radial-gradient(circle at 82% 92%,rgba(255,43,58,.06) 0%,transparent 45%),
-    linear-gradient(to bottom,#08080b,#101016);
 }
 .wrap{width:100%;max-width:960px;margin:0 auto;padding:28px 20px 40px;flex:1}
 
-/* Шапка карточки приложения */
+/* Шапка карточки приложения. Название — шрифтом игры: шаг знака у него 1.2 кегля,
+   поэтому кегль привязан к ширине экрана — на 320 px восемь букв иначе не влезут. */
 .app{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.app>img{width:72px;height:72px;border-radius:18px;flex:none;box-shadow:0 6px 20px rgba(0,0,0,.5)}
-.app h1{font-size:1.75rem;line-height:1.15;letter-spacing:-.02em;font-weight:800}
-.app p{color:var(--muted);font-size:.95rem;margin-top:2px}
+.app>img{width:72px;height:72px;border-radius:18px;flex:none}
+.app>div{min-width:0}
+.app h1{font-family:var(--hl-font-display);font-size:clamp(1.05rem,6.2vw,1.75rem);line-height:1.3;
+        font-weight:400;text-transform:uppercase;color:var(--hl-gold)}
+.app p{color:var(--hl-text-muted);font-size:.95rem;margin-top:2px}
 .meta{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
-     border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.tag{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--hl-text-muted);
+     border:1px solid var(--hl-brass-md);padding:2px 9px}
 
 .cols{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}
 
-/* Кнопки магазинов */
+/* Кнопки магазинов: плашка из игры (plate_frame, 9-slice, поля 12). */
 .stores{display:flex;flex-direction:column;gap:12px}
 .store{
-  display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text);
-  background:var(--surface);border:1px solid var(--line);border-radius:16px;
-  padding:14px 18px;transition:border-color .2s,background .2s,transform .1s;
+  position:relative;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--hl-text);
+  border:12px solid transparent;
+  border-image:url(../assets/plate_frame.png) 12 fill / 12px stretch;
+  image-rendering:pixelated;
+  padding:4px 6px;transition:filter .2s,transform .1s;
 }
-.store:hover{background:var(--surface-hi);border-color:var(--line-hi)}
+.store:hover{filter:brightness(1.12)}
 .store:active{transform:scale(.985)}
-.store>img{width:40px;height:40px;flex:none}
-.store .top{display:block;font-size:.76rem;color:var(--muted);letter-spacing:.03em}
-.store .name{display:block;font-size:1.22rem;font-weight:700;line-height:1.2}
-.store .go{margin-left:auto;color:var(--dim);font-size:1.3rem;line-height:1}
+.store>img{width:40px;height:40px;flex:none;image-rendering:auto}
+.store>span{min-width:0}
+.store .top{display:block;font-size:.76rem;color:var(--hl-text-muted);letter-spacing:.03em}
+.store .name{display:block;font-family:var(--hl-font-display);font-size:clamp(.8rem,4.1vw,1.125rem);
+             line-height:1.4;color:var(--hl-cream)}
+.store .go{margin-left:auto;font-family:var(--hl-font-display);color:var(--hl-brass-lt);
+           font-size:clamp(.8rem,4.1vw,1.125rem);line-height:1}
 
-/* Магазин, угаданный по устройству, — крупнее и с акцентом.
+/* Магазин, угаданный по устройству, — как кнопка «Играть» в игре.
    Вторая кнопка НИКОГДА не прячется: определение по User-Agent ошибается,
    и спрятанная кнопка превращает ошибку в потерянную установку. */
 .store.primary{
-  background:linear-gradient(135deg,rgba(255,43,58,.18),rgba(255,43,58,.06));
-  border-color:var(--line-hi);padding:18px;
-  box-shadow:0 8px 28px rgba(255,43,58,.14)
+  border:2px solid var(--hl-black);border-image:none;
+  background:var(--hl-blue-lt);color:var(--hl-dark2);
+  box-shadow:inset 0 -4px 0 var(--hl-blue-dk);
+  padding:16px 16px 20px;
 }
-.store.primary .name{font-size:1.4rem}
+.store.primary .top,.store.primary .name{color:var(--hl-dark2)}
+/* Ярлык сидит на верхней кромке кнопки, а не в строке: «AppGallery» шрифтом игры
+   и ярлык рядом на экране 360 px не помещаются. */
 .badge{
-  display:none;margin-left:auto;font-size:.68rem;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
-  background:var(--accent-soft);border-radius:999px;padding:3px 9px;white-space:nowrap
+  display:none;position:absolute;top:-11px;right:12px;font-size:.68rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--hl-cream);
+  background:var(--hl-dark2);border:2px solid var(--hl-black);padding:1px 8px;white-space:nowrap
 }
 .store.primary .badge{display:block}
 .store.primary .go{display:none}
 
-.note{font-size:.85rem;color:var(--muted);margin-top:10px}
-.note.warn{color:#ffb0b6}
+.note{font-size:.85rem;color:var(--hl-text-muted);margin-top:10px}
+.note.warn{color:var(--hl-text-error)}
 #ios-note{display:none}
 
 /* QR для десктопа */
-#qr-box{display:none;margin-top:16px;background:var(--surface);border:1px solid var(--line);
-        border-radius:16px;padding:16px;gap:16px;align-items:center}
-#qr-box svg{width:132px;height:132px;flex:none;border-radius:8px}
+#qr-box{display:none;margin-top:16px;background:var(--hl-brown-dk);border:2px solid var(--hl-brass-md);
+        padding:16px;gap:16px;align-items:center}
+#qr-box svg{width:132px;height:132px;flex:none}
 #qr-box .qr-text b{display:block;font-size:1rem;margin-bottom:4px}
-#qr-box .qr-text span{font-size:.86rem;color:var(--muted)}
+#qr-box .qr-text span{font-size:.86rem;color:var(--hl-text-muted)}
 
 /* Скриншот */
-.shot{border-radius:18px;overflow:hidden;border:1px solid var(--line);
+.shot{overflow:hidden;border:2px solid var(--hl-brass);outline:2px solid var(--hl-black);
       max-width:270px;margin:0 auto;display:block}
 .shot img{display:block;width:100%;height:auto}
 
 .feats{list-style:none;margin-top:20px;display:grid;gap:8px}
-.feats li{font-size:.92rem;color:var(--muted);padding-left:22px;position:relative}
-.feats li::before{content:"\25C6";position:absolute;left:0;color:var(--accent);font-size:.7rem;top:.35em}
+.feats li{font-size:.92rem;color:var(--hl-text-muted);padding-left:22px;position:relative}
+.feats li::before{content:"\25A0";position:absolute;left:0;top:.62em;color:var(--hl-gold);
+                  font-family:var(--hl-font-display);font-size:.56rem;line-height:1}
 
-footer{border-top:1px solid rgba(255,255,255,.06);padding:18px 20px 26px;
-       font-size:.8rem;color:var(--dim);text-align:center}
-footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15)}
-footer a:hover{color:var(--text)}
+footer{border-top:2px solid var(--hl-brass-dk);padding:18px 20px 26px;
+       font-size:.8rem;color:var(--hl-text-muted);text-align:center}
+footer a{color:var(--hl-text-muted);text-decoration:none;border-bottom:1px solid var(--hl-brass-md)}
+footer a:hover{color:var(--hl-text)}
 footer .row{margin-top:6px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 @media(min-width:760px){
   .wrap{padding-top:48px}
   .cols{grid-template-columns:1fr 300px;gap:40px}
-  .app h1{font-size:2.1rem}
   .shot{max-width:300px}
 }
 </style>
@@ -190,6 +216,8 @@ footer .row{margin-top:6px;display:flex;gap:14px;justify-content:center;flex-wra
   <div class="row">
     <a href="mailto:hourloop.support@gmail.com">hourloop.support@gmail.com</a>
     <a href="../hourloop/legal/privacy-ru.html">Политика конфиденциальности</a>
+    <a href="../hourloop/legal/privacy-site-ru.html">Политика сайта</a>
+    <a href="../hourloop/legal/terms-ru.html">Условия</a>
     <a href="../index.html">О студии</a>
   </div>
 </footer>
@@ -206,7 +234,10 @@ footer .row{margin-top:6px;display:flex;gap:14px;justify-content:center;flex-wra
      поэтому считаем последний шаг, который ему виден.
      `ecommerce` из сгенерированного кода убран — товаров тут нет;
      `defer` НЕ ставить: он отменяет автоматическую отправку
-     просмотра страницы, и визиты пришлось бы слать вручную.        */
+     просмотра страницы, и визиты пришлось бы слать вручную.
+     `webvisor` убран 10.10.2026 (решение разработчика, он же выключен
+     в кабинете): включать обратно только вместе с правкой политики
+     сайта, hourloop/legal/privacy-site-*.html, раздел 3.            */
   var METRIKA_ID = 112089390;
 
   (function (m, e, t, r, i, k, a) {
@@ -219,7 +250,7 @@ footer .row{margin-top:6px;display:flex;gap:14px;justify-content:center;flex-wra
 
   window.ym(METRIKA_ID, "init", {
     ssr: true, clickmap: true, trackLinks: true,
-    accurateTrackBounce: true, webvisor: true
+    accurateTrackBounce: true
   });
 
   function goal(name, params) {

@@ -29,7 +29,7 @@ if (typeof window !== "undefined" && window.location && window.location.hostname
 // ---------------------------------------------------------------------------
 const TEXTS = {
   ru: {
-    success: "Аккаунт удалён. Все его данные стёрты с сервера. Если игра установлена, при следующем запуске она начнёт новый гостевой профиль. Прогресс на телефоне стирается кнопкой «Сбросить прогресс» в настройках игры.",
+    success: "Аккаунт удалён. Все его данные стёрты с сервера. Если игра установлена, при следующем обращении к серверу она сотрёт прогресс на телефоне и начнёт чистым гостем.",
     no_connection: "Нет связи с сервером. Попробуйте позже.",
     invalid_email: "Похоже, в адресе ошибка.",
     not_linked_email: "К этой почте не привязан ни один аккаунт Hourloop. Аккаунт без привязки удаляется в игре или письмом в поддержку — способы ниже.",
@@ -54,7 +54,7 @@ const TEXTS = {
     callback_title: "Удаление аккаунта Hourloop"
   },
   en: {
-    success: "Account deleted. All of its data has been erased from the server. If the game is installed, it will start a new guest profile on next launch. Progress on your phone can be cleared using the \"Reset Progress\" button in game settings.",
+    success: "Account deleted. All of its data has been erased from the server. If the game is installed, it will erase the progress on your phone upon its next server request and start over as a clean guest.",
     no_connection: "No connection to the server. Please try again later.",
     invalid_email: "Invalid email address.",
     not_linked_email: "No Hourloop account is linked to this email address. An unlinked account can be deleted inside the game or by emailing support — see methods below.",

@@ -1,0 +1,23 @@
+/* brand.css — СГЕНЕРИРОВАН: python tools/build_brand.py из Brand/brand.json.
+   Руками не править: значение меняется в brand.json. Правила — Brand/BRAND.md. */
+:root {
+  --hl-black: #000000;
+  --hl-dark2: #181410;
+  --hl-brown-dk: #4a3020;
+  --hl-gray-br: #5a4c41;
+  --hl-brass-dk: #6a4418;
+  --hl-brass-md: #9c6129;
+  --hl-brass: #cd8d29;
+  --hl-gold: #e6b239;
+  --hl-brass-lt: #f6be6a;
+  --hl-cream: #f6eab4;
+  --hl-blue-lt: #5aaac5;
+  --hl-blue-dk: #41657b;
+  --hl-text: #f0e6d1;
+  --hl-text-name: #f5e6bf;
+  --hl-text-muted: #b8a88f;
+  --hl-text-error: #ff7366;
+  --hl-font-display: "LCD 16x2 Remastered", monospace;
+  --hl-font-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@font-face { font-family: "LCD 16x2 Remastered"; src: url(assets/fonts/hourloop-display.woff) format("woff"); font-display: swap; }

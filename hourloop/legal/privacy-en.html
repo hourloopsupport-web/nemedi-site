@@ -6,6 +6,8 @@
   <title>Privacy Policy — Hourloop by NeMedi</title>
   <link rel="icon" type="image/png" href="../../assets/app_icon.png">
   <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../brand.css">
+  <link rel="stylesheet" href="../game.css">
 </head>
 <body>
 
@@ -31,7 +33,7 @@
       <div class="legal-header">
         <h1>Privacy Policy — Hourloop</h1>
         <div class="legal-meta">
-          <span><strong>Last updated:</strong> 4 October 2026</span>
+          <span><strong>Last updated:</strong> 11 October 2026</span>
         </div>
         <div class="lang-switch">
           <a href="privacy-ru.html" class="lang-btn">Русский</a>
@@ -40,12 +42,12 @@
       </div>
 
       <div class="legal-body">
-        <p>This policy explains what data is processed in the mobile game <strong>Hourloop</strong> (the "Game"), by whom and for what purpose. The Game is distributed through Huawei AppGallery and RuStore.</p>
+        <p>This policy explains what data is processed in the mobile game <strong>Hourloop</strong> (the "Game"), by whom and for what purpose. The Game is distributed through Huawei AppGallery, RuStore and Google Play. This policy is about the Game; visitors to the nemedistudio.online website are covered by a separate <a href="privacy-site-en.html">website privacy policy</a>.</p>
         <p><strong>Developer:</strong> <code>NeMedi</code><br>
         <strong>Studio Contact:</strong> <a href="mailto:nemedistudio@gmail.com" class="contact-email">nemedistudio@gmail.com</a><br>
         <strong>Game Support:</strong> <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a></p>
 
-        <hr style="border: 0; border-top: 1px solid rgba(255, 43, 58, 0.2); margin: 24px 0;">
+        <hr class="hl-rule">
 
         <h2>1. In short</h2>
         <p>The Game <strong>requires no registration and never asks for your name, email, phone number or payment details</strong>. Run history and settings are stored on your device only; meta progression (regular gold, talents, abilities, Game+, Clock Tower weekly record, module merge escrow) is additionally copied to an account cloud save on the game server. Chronites, keys, and banner items are also stored on the game server and linked to a randomly generated player ID rather than to an individual or a device, to protect balances and items from tampering. Optionally, you can link a VK ID or email address to your account to transfer your progress, chronites, keys, and items to another phone (linking is entirely voluntary; without it the Game works as before).</p>
@@ -86,7 +88,7 @@
               <td>VK user ID or email address — if you linked your account</td>
               <td>logging into the same account on another phone</td>
               <td>developer (hosted on Yandex Cloud), code email delivery — Yandex Cloud Postbox, VK ID login — VK LLC</td>
-              <td><strong>your consent:</strong> linking occurs solely by your action; the game works without it</td>
+              <td><strong>your consent:</strong> before linking and logging in you tick the consent checkbox in the "Account" window (in versions of the Game that have it); the game works without linking</td>
             </tr>
             <tr>
               <td>Name in the Clock Tower weekly leaderboard, floor and time</td>
@@ -110,7 +112,7 @@
               <td>Gameplay events: start and end of a run, defeats, card choices</td>
               <td>analysing progression, tuning difficulty and balance</td>
               <td>AppMetrica</td>
-              <td>the developer's legitimate interest in improving the Game</td>
+              <td>the developer's legitimate interest in improving the Game; if the country set on your phone is not Russia or cannot be determined — your consent (in versions of the Game that ask for it)</td>
             </tr>
             <tr>
               <td>Crash data</td>
@@ -124,7 +126,7 @@
 
         <p><strong>The Game processes no payment data:</strong> it currently has no in-app purchases.</p>
 
-        <p><strong>Device permissions.</strong> The Game requires internet access and network state information; without them ads cannot load. In the Huawei AppGallery version, the Huawei ad SDK additionally declares permissions to query the list of installed apps and to install apps: these are part of that SDK and are used by the advertising system itself; the Game does not call them.</p>
+        <p><strong>Device permissions.</strong> The Game requires internet access and network state information; without them ads cannot load. In the Huawei AppGallery version, the Huawei ad SDK additionally declares permissions to query the list of installed apps and to install apps: these are part of that SDK and are used by the advertising system itself; the Game does not call them. The Google Play version does not include the Huawei SDK and has no such permissions; it does declare the permission to access the advertising ID (AD_ID), which the Yandex ad system and AppMetrica need, and the ID itself is passed on only if you agreed to personalized ads (section 5).</p>
 
         <p><strong>The Game never requests</strong> access to location, camera, microphone, contacts, photos, files or call logs.</p>
 
@@ -192,7 +194,7 @@
 
         <p><strong>What the server does NOT store:</strong> your name, surname, phone number, advertising identifier (GAID/OAID), permanent device identifier (Android ID), device model, or IP address. The server retains your email address only if you voluntarily linked it to your account. From VK, the server retains strictly the VK user ID: access tokens, name, photo, phone number, and other profile details are never requested or stored. Server functions do not log player IP addresses; the cloud hosting infrastructure may observe connection metadata solely during active network transmission, and the Game does not retain it.</p>
 
-        <p><strong>Account linking and logging in on another device.</strong> Linking an account to a VK ID or email address is voluntary and configured in "Settings" → "Account". Logging in via VK ID on Android uses the official VK ID SDK (via the installed VK app or browser): the server receives a one-time code, exchanges it, and stores only the VK user ID (without access tokens, name, or contacts). To link an email, a 6-digit confirmation code is sent to the specified address (valid for 15 minutes, up to 5 attempts, at most 1 email per minute and 10 per day per address; sent via Yandex Cloud Postbox from <code>noreply@nemedistudio.online</code>, containing only the code and its expiration time). In the confirmation codes database, neither the address nor the code is saved — only their cryptographic HMAC hashes are kept. In the game itself, the email is masked as <code>p***@mail.ru</code>. When logging into a linked account on another phone, that account's progress is transferred there from the cloud save (replacing whatever progress was on that phone). The server issues a new access token, while the previous phone loses access to this account and starts over as a clean guest: progress on it is erased, remaining safely stored in the account's cloud save on the server. On the account deletion page, signing in with VK ID is performed via a redirect to id.vk.ru (VK ID web application, VK LLC); there are no third-party VK scripts on our pages. The server exchanges the code and locates the linked account by the VK user ID to delete it. An email code for deletion is requested under the same limits, and the email message explicitly states that the code confirms account deletion. The deletion process retains no new data.</p>
+        <p><strong>Account linking and logging in on another device.</strong> Linking an account to a VK ID or email address is voluntary and configured in the "Account" window: the menu button on the game's main screen (the three-line icon to the right of the logo) → "Account". In versions of the Game with the consent checkbox, the linking and login buttons become active only after you tick consent to the processing of your data (a link to this policy is shown next to it); the checkbox is not remembered and is cleared every time the window is opened. The Google Play version of the Game has no VK ID login: only email can be linked there. Logging in via VK ID on Android (the AppGallery and RuStore versions) uses the official VK ID SDK (via the installed VK app or browser): the server receives a one-time code, exchanges it, and stores only the VK user ID (without access tokens, name, or contacts). To link an email, a 6-digit confirmation code is sent to the specified address (valid for 15 minutes, up to 5 attempts, at most 1 email per minute and 10 per day per address; sent via Yandex Cloud Postbox from <code>noreply@nemedistudio.online</code>, containing only the code and its expiration time). In the confirmation codes database, neither the address nor the code is saved — only their cryptographic HMAC hashes are kept. In the game itself, the email is masked as <code>p***@mail.ru</code>. When logging into a linked account on another phone, that account's progress is transferred there from the cloud save (replacing whatever progress was on that phone). The server issues a new access token, while the previous phone loses access to this account and starts over as a clean guest: progress on it is erased, remaining safely stored in the account's cloud save on the server. On the account deletion page, signing in with VK ID is performed via a redirect to id.vk.ru (VK ID web application, VK LLC); there are no third-party VK scripts on our pages. The server exchanges the code and locates the linked account by the VK user ID to delete it. An email code for deletion is requested under the same limits, and the email message explicitly states that the code confirms account deletion. The deletion process retains no new data.</p>
 
         <p><strong>Where data is hosted:</strong> the server is hosted on <strong>Yandex Cloud (Russia)</strong>, processing data solely on behalf of the developer as an infrastructure provider.</p>
 
@@ -223,10 +225,11 @@
           <li><strong>until you answer</strong> — the decline setting applies.</li>
         </ul>
 
-        <p>You can change your mind at any time: Settings → the relevant-ads toggle. The networks are also given a content rating: the Game carries a <strong>12+</strong> rating (China 12+, Brazil A14, other regions 12+), and ads unsuitable for that age should not be shown.</p>
+        <p>You can change your mind at any time: the menu button on the game's main screen → Settings → the relevant-ads toggle. The Huawei ad network is also told to serve only ads suitable for a general audience.</p>
 
         <h2>6. Gameplay statistics (AppMetrica)</h2>
         <p>The Game sends anonymous gameplay statistics to the <strong>AppMetrica</strong> analytics service (owned by Yandex). This data is used to tune difficulty and balance, and to assess the effectiveness of advertising campaigns.</p>
+        <p><strong>Consent to statistics.</strong> If the country set on your phone is not Russia or cannot be determined, the Game asks for your consent to statistics on first launch and does not start AppMetrica until you allow it (in versions of the Game that ask this question). You can change the choice in the game settings ("Privacy &amp; Ads" → "Game statistics"); withdrawing consent stops sending immediately. For players whose phone country is Russia, statistics are collected without a separate question, on the basis of the developer's legitimate interest.</p>
 
         <p><strong>What the service collects on its own, without the Game's involvement:</strong></p>
         <ul>
@@ -283,7 +286,7 @@
             </tr>
             <tr>
               <td>VK LLC (VK ID)</td>
-              <td>logging in via VK ID at your option: authentication data under VK ID terms. Login statistics (api.vk.ru) and crash reports (sdk-api.apptracer.ru) are transmitted by the VK ID SDK only after tapping the VK ID sign-in button; prior to tapping, the SDK does not access the network; on the account deletion page — redirect to id.vk.ru</td>
+              <td>logging in via VK ID at your option (AppGallery and RuStore versions only): authentication data under VK ID terms. Login statistics (api.vk.ru) and crash reports (sdk-api.apptracer.ru) are transmitted by the VK ID SDK only after tapping the VK ID sign-in button; prior to tapping, the SDK does not access the network; on the account deletion page — redirect to id.vk.ru</td>
               <td><a href="https://id.vk.ru/terms" target="_blank" rel="noopener">id.vk.ru/terms</a></td>
             </tr>
             <tr>
@@ -310,22 +313,34 @@
 
         <h2>9. Your rights and how to exercise them</h2>
         <ul>
-          <li><strong>Change your ad personalisation decision:</strong> Settings → the relevant-ads toggle. It takes effect immediately and is passed to every network, AppMetrica included.</li>
+          <li><strong>Change your ad personalisation decision:</strong> the menu button on the game's main screen → Settings → the relevant-ads toggle. It takes effect immediately and is passed to every network, AppMetrica included.</li>
           <li><strong>Reset your advertising identifier:</strong> in your device settings, under privacy or ads. After a reset neither the ad networks nor the analytics recognise you any more.</li>
-          <li><strong>Delete data from your device:</strong> Settings → reset progress zeroes out progress on the phone (run history is permanently erased), and the next upload overwrites the cloud save on the server with an empty one (chronites, keys, items, and account links remain on the server). Uninstalling the app removes every file listed in section 3.</li>
-          <li id="delete-server"><strong>Delete data from the game server:</strong> three methods are provided: 1) <strong>in the game immediately</strong> — "Settings" → "Account" → "Delete account" → "Delete forever" (works for any account, including unlinked guest profiles; erases both server data, including cloud saves, and progress on this phone immediately); 2) <strong>on the account deletion page for linked accounts immediately</strong> — via VK ID sign-in or email confirmation code; 3) <strong>by email to support with Player ID within 30 days</strong> — send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject "Account deletion" and provide your Player ID (find your ID in the game: Shop tab → History subtab; if you linked an email, you may write from that email without specifying the Player ID). Deletion via the website or by email erases data on the server; the game on your phone learns of this upon its next server request and erases progress on the phone, starting over as a clean guest. Server deletion permanently erases the wallet, VK ID and email links, email confirmation codes (auth_codes), cloud saves (saves), transaction ledger, run sessions, guarantee counters, pull history, items, Clock Tower runs, and leaderboard records. Detailed instructions and the deletion form are available on the <a href="delete-account-en.html">account deletion page</a>.</li>
-          <li><strong>Ask a question or submit a request about data processing:</strong> write to the address in section 12.</li>
+          <li><strong>Delete data from your device:</strong> the menu button on the game's main screen → Settings → reset progress zeroes out progress on the phone (run history is permanently erased), and the next upload overwrites the cloud save on the server with an empty one (chronites, keys, items, and account links remain on the server). Uninstalling the app removes every file listed in section 3.</li>
+          <li id="delete-server"><strong>Delete data from the game server:</strong> three methods are provided: 1) <strong>in the game immediately</strong> — the menu button on the game's main screen (the three-line icon to the right of the logo) → "Account" → "Delete account" ("Delete data" for an unlinked guest profile) → "Delete forever" (works for any account, including unlinked guest profiles; erases both server data, including cloud saves, and progress on this phone immediately); 2) <strong>on the account deletion page for linked accounts immediately</strong> — via VK ID sign-in or email confirmation code; 3) <strong>by email to support with Player ID within 30 days</strong> — send an email to <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a> with the subject "Account deletion" and provide your Player ID (find your ID in the game: Shop tab → History subtab; if you linked an email, you may write from that email without specifying the Player ID). Deletion via the website or by email erases data on the server; the game on your phone learns of this upon its next server request and erases progress on the phone, starting over as a clean guest. Server deletion permanently erases the wallet, VK ID and email links, email confirmation codes (auth_codes), cloud saves (saves), transaction ledger, run sessions, guarantee counters, pull history, items, Clock Tower runs, and leaderboard records. Detailed instructions and the deletion form are available on the <a href="delete-account-en.html">account deletion page</a>.</li>
+          <li><strong>Ask a question or submit a request about data processing:</strong> write to the address in section 13.</li>
           <li><strong>Contact the recipients directly:</strong> rights regarding data processed by Yandex, Huawei and VK are exercised through them; the procedure is described in their policies, linked in section 7.</li>
         </ul>
 
 
         <h2>10. Children</h2>
-        <p>The Game is not specifically directed to children: it targets a general audience and carries an official age rating of <strong>12+</strong> based on its content, not on its intended audience. It collects no personally identifying information. The "child-directed app" flag is not sent to the advertising networks; the 12+ content rating is sent instead (section 5).</p>
+        <p>The Game is not specifically directed to children and is intended for players aged 13 and over. We do not ask for a date of birth and do not verify age. If you are under 14, you may use the Game and link a VK ID or an email to it only with the consent of a parent or legal guardian; where your country requires a higher age for you to consent to online data processing on your own (in the EU and the United Kingdom — between 13 and 16), that age applies. If you are a parent and find that your child linked an account without your consent, write to the email in section 13 and we will delete the data. Each app store assigns the Game an age rating under its own rules, so the rating may differ between stores; the current one is shown on the Game's store page. The "child-directed app" flag is not sent to the advertising networks. Without account linking the Game collects no information that identifies you; if you link an account, the server stores your VK user ID or email address (section 4).</p>
 
-        <h2>11. Changes to this policy</h2>
+        <h2>11. Users in the EU, the United Kingdom and other countries</h2>
+        <p>The Game may be available to users in many countries. If you are in the European Economic Area, the United Kingdom or Switzerland, local data protection laws apply to the processing of your data (in the EU, the GDPR). What this means:</p>
+        <ul>
+          <li><strong>Who is responsible for the data:</strong> the developer NeMedi; contacts are in section 13.</li>
+          <li><strong>Grounds for processing:</strong> the Game's server features (wallet, account, cloud save, Clock Tower) are needed for the Game you are using to work — that is, to perform the <a href="terms-en.html">Terms of Use</a>; the advertising ID, AppMetrica statistics with crash data, and linking a VK ID or email are based on your consent (the Game asks for it on first launch and in the "Account" window); fraud protection is based on our legitimate interest in protecting the Game from tampering.</li>
+          <li><strong>Your rights:</strong> to get a copy of your data and information on how it is processed; to correct it; to delete it; to restrict processing; to receive your data in a portable format; to object to processing based on legitimate interest; and to withdraw consent at any time (the ads and statistics switches are in the game settings; linking is removed by deleting the account in the "Account" window). Withdrawing consent does not affect the lawfulness of processing before it.</li>
+          <li><strong>How to use your rights:</strong> write to the email in section 13; we will reply within the time set by law (in the EU, one month). So that no one else can obtain your data, we may ask you to confirm the account is yours (for example, by writing from the linked email).</li>
+          <li><strong>Complaints:</strong> you may complain to the data protection authority in your country (in the United Kingdom, the ICO).</li>
+          <li><strong>Transfers outside your country:</strong> the game server is in Russia (Yandex Cloud), advertising and statistics are processed in Russia, and the Huawei Ads system (AppGallery version only) in China. Neither the EU nor the United Kingdom has recognised these countries as providing the same level of data protection as their own. Data goes there because the Game cannot work without it (wallet, account) or because you consented (advertising ID, account linking). You can opt out of the transfer by not using the relevant feature or by deleting your account.</li>
+        </ul>
+        <p><strong>US states.</strong> If you live in a US state with its own privacy law (for example, California), you can ask for information about your data, for it to be corrected or deleted, and opt out of personalized ads (in the game settings). We will not penalize you for using these rights. Write to the email in section 13.</p>
+
+        <h2>12. Changes to this policy</h2>
         <p>If the set of services used by the Game changes, this policy is updated and the date at the top is revised. The current version is always available at this address.</p>
 
-        <h2>12. Contact</h2>
+        <h2>13. Contact</h2>
         <p>Studio contact and privacy inquiries: <a href="mailto:nemedistudio@gmail.com" class="contact-email">nemedistudio@gmail.com</a></p>
         <p>Hourloop player support: <a href="mailto:hourloop.support@gmail.com" class="contact-email">hourloop.support@gmail.com</a></p>
       </div>
